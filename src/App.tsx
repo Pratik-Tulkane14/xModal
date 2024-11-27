@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 
 function App() {
+  const modalRef = useRef<HTMLDivElement>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("")
   const [email, setEmail] = useState<string>('')
@@ -26,6 +27,22 @@ function App() {
        setDateOfBirth('');
     }
   }
+  const handleClickOutside = (e: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+      setIsModalOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (isModalOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [isModalOpen]);
   return (
     <>
 
@@ -34,7 +51,7 @@ function App() {
         <button className='btn' onClick={()=>setIsModalOpen(!isModalOpen)}>Open Form</button>
         <div className="modal-content">
           {isModalOpen &&
-            <form className='form' onSubmit={ handleSubmit}>
+            <form className='form' onSubmit={handleSubmit} ref={modalRef}>
 
             <h1>Fill Details</h1>
             <div className="feild">
