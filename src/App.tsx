@@ -49,9 +49,9 @@ function App() {
       <div className="modal">
         <h1>User Details Modal</h1>
         <button className='btn' onClick={()=>setIsModalOpen(!isModalOpen)}>Open Form</button>
-        <div className="modal-content">
+        <div className="modal-content" ref={modalRef}>
           {isModalOpen &&
-            <form className='form' onSubmit={handleSubmit} ref={modalRef}>
+            <form className='form' onSubmit={handleSubmit} >
 
             <h1>Fill Details</h1>
             <div className="feild">
