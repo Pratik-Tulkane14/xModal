@@ -19,6 +19,11 @@ function App() {
      if(birthDate>=todayDate){
       window.alert("Invalid date of birth. Date of birth can not be in the future.")
 
+    }else{
+       setUserName('');
+       setEmail('');
+       setPhNumber('');
+       setDateOfBirth('');
     }
   }
   return (
@@ -38,7 +43,7 @@ function App() {
             </div>
             <div className="feild">
 
-            <input type="text" required value={userName} onChange={(e) => setUserName(e.target.value)} />
+                <input type="text" id='username' required value={userName} onChange={(e) => setUserName(e.target.value)} />
             </div>
             <div className="feild">
 
@@ -46,7 +51,7 @@ function App() {
             </div>
             <div className="feild">
 
-            <input type="email" required value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="email" id='email' required value={email} onChange={(e) => setEmail(e.target.value)} />
             </div>
             <div className="feild">
 
@@ -54,7 +59,7 @@ function App() {
             </div>
             <div className="feild">
 
-            <input type="text" maxLength={10} required value={phNumber} onChange={(e) => setPhNumber(e.target.value)} />
+                <input type="text" id='phone' maxLength={10} required value={phNumber} onChange={(e) => setPhNumber(e.target.value)} />
             </div>
             <div className="feild">
 
@@ -62,9 +67,9 @@ function App() {
             </div>
             <div className="feild">
 
-            <input type="date" required value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
+                <input type="date" id='dob' required value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
             </div>
-            <button type='submit' className='btn' >Submit</button>
+              <button type='submit' className='btn submit-button' >Submit</button>
           </form>
           }
 
