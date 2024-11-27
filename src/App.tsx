@@ -5,7 +5,7 @@ function App() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [userName, setUserName] = useState<string>("")
   const [email, setEmail] = useState<string>('')
-  const [phNumber, setPhNumber] = useState<string>();
+  const [phNumber, setPhNumber] = useState<string>('');
   const [dateOfBirth, setDateOfBirth] = useState<string>('');
   const handleSubmit =(e:React.FormEvent)=>{
     e.preventDefault();
@@ -29,7 +29,7 @@ function App() {
         <button className='btn' onClick={()=>setIsModalOpen(!isModalOpen)}>Open Form</button>
         <div className="modal-content">
           {isModalOpen &&
-          <form className='form'>
+            <form className='form' onSubmit={ handleSubmit}>
 
             <h1>Fill Details</h1>
             <div className="feild">
@@ -64,7 +64,7 @@ function App() {
 
             <input type="date" required value={dateOfBirth} onChange={(e) => setDateOfBirth(e.target.value)} />
             </div>
-            <button type='submit' className='btn' onClick={(e)=>handleSubmit(e)}>Submit</button>
+            <button type='submit' className='btn' >Submit</button>
           </form>
           }
 
