@@ -28,6 +28,8 @@ function App() {
     }
   }
   const handleClickOutside = (e: MouseEvent) => {
+    // console.log(modalRef.current.contains(e.target as Node),"modalRef.current.contains");
+
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
       setIsModalOpen(false);
     }
@@ -45,13 +47,13 @@ function App() {
   }, [isModalOpen]);
   return (
     <>
-      <div className="main">
+      <div className="main" >
         <h1>User Details Modal</h1>
         <button className='btn' onClick={() => setIsModalOpen(!isModalOpen)}>Open Form</button>
       </div>
-      <div className="modal">
-        <div className="modal-content" ref={modalRef}>
-          {isModalOpen &&
+      {isModalOpen &&
+        <div className="modal" >
+          <div className="modal-content" ref={modalRef}>
             <form className='form' onSubmit={handleSubmit} >
 
               <h1>Fill Details</h1>
@@ -89,11 +91,9 @@ function App() {
               </div>
               <button type='submit' className='btn submit-button' >Submit</button>
             </form>
-          }
-
+          </div>
         </div>
-
-      </div>
+      }
     </>
   )
 }
